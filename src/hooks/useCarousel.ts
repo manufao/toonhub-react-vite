@@ -24,7 +24,7 @@ export function useCarousel(count: number) {
           : (current + count - 1) % count,
       );
     },
-    [isAnimating],
+    [isAnimating, count],
   );
 
   return { activeIndex, isAnimating, navigate };
