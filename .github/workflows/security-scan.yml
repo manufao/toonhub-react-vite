@@ -20,6 +20,10 @@ jobs:
   secret-scan:
     name: Secret Scanning (Gitleaks)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # gitleaks-action lists the pull request commits through the API
+      pull-requests: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
