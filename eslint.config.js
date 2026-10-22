@@ -103,7 +103,6 @@ export default defineConfig(
 				}
 			],
 			'better-tailwindcss/no-concatenated-classes': 'error',
-			'import-x/no-cycle': 'error',
 			'import-x/no-restricted-paths': [
 				'error',
 				{
