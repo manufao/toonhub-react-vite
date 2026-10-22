@@ -18,13 +18,18 @@ pnpm preview
 
 Les images des figurines sont dans `src/assets/img/` (WebP). Une connexion internet est nécessaire pour charger les Google Fonts.
 
-## Lint
+## Qualité
 
 ```bash
-pnpm lint
+pnpm format:check   # Prettier
+pnpm lint           # ESLint
+pnpm test:types     # TypeScript
+pnpm security:audit # vulnérabilités des dépendances
 ```
 
 ESLint vérifie la structure du projet : sens des dépendances (`components` → `hooks` → `lib`/`data`), absence de cycles, imports internes sans passer par le barrel, nommage des fichiers, 150 lignes maximum, pas de style inline, classes Tailwind valides et non construites dynamiquement.
+
+La CI GitHub (`.github/workflows/`) relance ces vérifications et le build à chaque pull request. Un second workflow lance les scans de sécurité (Gitleaks, pnpm audit, Semgrep, OWASP ZAP) à chaque pull request et chaque semaine.
 
 ## TypeScript 6
 
