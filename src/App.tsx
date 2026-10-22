@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import persoChemiseVerte from "./assets/perso/perso-chemise-verte.webp";
-import persoHoodieRose from "./assets/perso/perso-hoodie-rose-transparent-v2.webp";
-import persoTshirtMenthe from "./assets/perso/perso-tshirt-menthe.webp";
-import persoWowIncantation from "./assets/perso/perso-wow-incantation.webp";
+import persoChemiseVerte from "./assets/img/perso-chemise-verte.webp";
+import persoHoodieRose from "./assets/img/perso-hoodie-rose-transparent-v2.webp";
+import persoTshirtMenthe from "./assets/img/perso-tshirt-menthe.webp";
+import persoWowIncantation from "./assets/img/perso-wow-incantation.webp";
 
 type Direction = "next" | "prev";
 type Role = "center" | "left" | "right" | "back";
