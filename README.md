@@ -23,11 +23,18 @@ Les images des figurines sont dans `src/assets/img/` (WebP). Une connexion inter
 ```bash
 pnpm format:check   # Prettier
 pnpm lint           # ESLint
+pnpm lint:deps      # dependency-cruiser
 pnpm test:types     # TypeScript
 pnpm security:audit # vulnérabilités des dépendances
 ```
 
-ESLint vérifie la structure du projet : sens des dépendances (`components` → `hooks` → `lib`/`data`), absence de cycles, imports internes sans passer par le barrel, nommage des fichiers, 150 lignes maximum, pas de style inline, classes Tailwind valides et non construites dynamiquement.
+ESLint vérifie la structure du projet : sens des dépendances (`components` → `hooks` → `lib`/`data`), imports internes sans passer par le barrel, nommage des fichiers, 150 lignes maximum, pas de style inline, classes Tailwind valides et non construites dynamiquement. dependency-cruiser analyse le graphe complet : cycles, fichiers orphelins, paquets non déclarés ou introuvables, dépendances de dev importées par le code de production.
+
+Hooks Git (husky, installés par `pnpm install`) :
+
+- `pre-commit` : Gitleaks sur les fichiers indexés (si installé : `brew install gitleaks`), puis Prettier et ESLint sur ces fichiers (lint-staged)
+- `commit-msg` : format Conventional Commits (commitlint)
+- `pre-push` : `test:types`, `lint` et `lint:deps`
 
 La CI GitHub (`.github/workflows/`) relance ces vérifications et le build à chaque pull request. Un second workflow lance les scans de sécurité (Gitleaks, pnpm audit, Semgrep, OWASP ZAP) à chaque pull request et chaque semaine.
 
